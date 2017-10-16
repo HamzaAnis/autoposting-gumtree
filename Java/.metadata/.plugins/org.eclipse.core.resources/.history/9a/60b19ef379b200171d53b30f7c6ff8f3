@@ -1,0 +1,17 @@
+package org.bst.gumtree;
+
+public class Main {
+    ScreensController mainContainer;
+    public Main(){
+        mainContainer = new ScreensController(this);
+        mainContainer.loadScreen("ChatScreen","ChatScreen.fxml");
+        mainContainer.setScreen("StartScreen");
+
+        try {
+            LocalDevice localDevice = LocalDevice.getLocalDevice();
+            myName = localDevice.getFriendlyName();
+        } catch (BluetoothStateException e) {
+            e.printStackTrace();
+        }
+    }
+}
