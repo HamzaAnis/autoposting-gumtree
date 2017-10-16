@@ -24,6 +24,11 @@ namespace auto_posting_gumtree
         {
             InitializeComponent();
         }
+
+        private void TextBox_TextChanged()
+        {
+    
+        }
     }
    
 }
