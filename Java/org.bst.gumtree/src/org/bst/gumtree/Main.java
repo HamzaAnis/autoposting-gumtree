@@ -10,7 +10,10 @@ public class Main extends Application {
     public Main(){
         mainContainer = new ScreensController(this);
         mainContainer.loadScreen("GoogleLogin","GoogleLogin.fxml");
+//        mainContainer.loadScreen("check","check.fxml");
+        mainContainer.loadScreen("ChatScreen","ChatScreen.fxml");
         mainContainer.setScreen("GoogleLogin");
+        
     }
     @Override
     public void start(Stage primaryStage) throws Exception{
@@ -25,6 +28,10 @@ public class Main extends Application {
         primaryStage.setTitle("Gumtree Ad post");
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+    public void laoadDelete(){
+    	System.out.println("Start");
+    	 mainContainer.setScreen("ChatScreen");
     }
     public static void main(String[] args) {
         launch(args);

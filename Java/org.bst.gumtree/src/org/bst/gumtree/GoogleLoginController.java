@@ -25,6 +25,6 @@ public class GoogleLoginController implements ControlledScreen {
 		String userId = userIdField.getText();
 		String password = passwordField.getText();
 		System.out.println(userId + "   " + password);
-		// etc...
+		myLogicalParent.laoadDelete();
 	}
 }
