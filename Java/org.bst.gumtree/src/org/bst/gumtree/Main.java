@@ -1,11 +1,15 @@
 package org.bst.gumtree;
 
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+	WebDriver driver;
     ScreensController mainContainer;
     public Main(){
         mainContainer = new ScreensController(this);
@@ -36,5 +40,17 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
+	
+    public void loadChromDriver(){
+    	
+    	 new Thread(new Runnable() {
+    	        @Override
+    	        public void run() {
+    	        	String exePath = "dependencies/chromedriver.exe";
+    	    		System.setProperty("webdriver.chrome.driver", exePath);
+    	    		driver = new ChromeDriver();
+    	    		driver.get("http://google.com");
+    	        }
+    	    }).start();
+    }
 }

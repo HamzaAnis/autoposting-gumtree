@@ -11,7 +11,7 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.layout.HBox?>
 
-<GridPane hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.bst.gumtree.GoogleLoginController">
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.bst.gumtree.GoogleLoginController">
 
     <padding>
         <Insets bottom="10" left="10" right="10" top="10" />
