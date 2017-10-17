@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.TextFlow?>
 
-<GridPane alignment="center" hgap="0" prefHeight="200" prefWidth="200" vgap="0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.bst.gumtree.GumTreeInputController">
+<GridPane alignment="center" hgap="0" prefHeight="397.0" prefWidth="419.0" vgap="0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.bst.gumtree.GumTreeInputController">
    <columnConstraints>
       <ColumnConstraints hgrow="ALWAYS" />
    </columnConstraints>
@@ -24,16 +24,6 @@
    </rowConstraints>
 
    <children>
-      <!--<TextArea fx:id="chatLog" editable="false" focusTraversable="false" mouseTransparent="true" GridPane.columnIndex="1" GridPane.fillHeight="true" GridPane.fillWidth="true">
-         <GridPane.margin>
-            <Insets left="4.0" right="4.0" top="4.0" />
-         </GridPane.margin></TextArea>-->
-
-       <TextFlow fx:id="chatLog" style="-fx-background-radius: 3; -fx-background-color: #FFF; -fx-border-color: #CCC; -fx-border-radius: 3;">
-           <GridPane.margin>
-               <Insets left="4.0" right="4.0" top="4.0" />
-           </GridPane.margin>
-       </TextFlow>
 
       <GridPane GridPane.rowIndex="1">
           <GridPane.margin>
@@ -41,8 +31,8 @@
           </GridPane.margin>
 
         <columnConstraints>
-          <ColumnConstraints hgrow="ALWAYS" />
-          <ColumnConstraints minWidth="80" />
+          <ColumnConstraints hgrow="ALWAYS" maxWidth="322.0" minWidth="24.0" prefWidth="322.0" />
+          <ColumnConstraints maxWidth="168.0" minWidth="0.0" prefWidth="0.0" />
         </columnConstraints>
 
         <rowConstraints>
@@ -50,15 +40,12 @@
         </rowConstraints>
 
          <children>
-            <TextArea fx:id="chatText" prefRowCount="1">
-               <GridPane.margin>
-                  <Insets right="6.0" />
-               </GridPane.margin></TextArea>
-             <Button fx:id="sendButton" defaultButton="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#sendMassage" text="Send" GridPane.columnIndex="1">
+             <Button fx:id="sendButton" defaultButton="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#sendMassage" prefHeight="31.0" prefWidth="363.0" text="Start">
              </Button>
          </children>
 
       </GridPane>
+      <TextField prefHeight="31.0" prefWidth="325.0" />
 
 
    </children>

@@ -6,9 +6,12 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 public class Main extends Application {
 	WebDriver driver;
@@ -17,8 +20,8 @@ public class Main extends Application {
 	public Main() {
 		mainContainer = new ScreensController(this);
 		mainContainer.loadScreen("GoogleLogin", "GoogleLogin.fxml");
-		// mainContainer.loadScreen("check","check.fxml");
 		mainContainer.loadScreen("GumTree", "GumTree.fxml");
+		mainContainer.loadScreen("LoadingScreen", "LoadingScreen.fxml");
 		mainContainer.setScreen("GoogleLogin");
 
 	}
@@ -36,6 +39,26 @@ public class Main extends Application {
 		primaryStage.setTitle("Gumtree Ad post");
 		primaryStage.setScene(scene);
 		primaryStage.show();
+		primaryStage.setOnCloseRequest(e -> {
+			// ((LoadingScreenController)
+			// mainContainer.getScreenController("LoadingScreen"))
+			// .setText("Closing the Program");
+			mainContainer.setScreen("LoadingScreen");
+			new Thread(new Runnable() {
+				@Override
+				public void run() {
+					System.out.println("Driver is ==" + driver);
+					System.out.println("Calling exit ");
+					if (driver != null) {
+						driver.quit();
+						Platform.exit();
+						System.exit(0);
+					}
+				}
+			}).start();
+
+		});
+
 	}
 
 	public static void main(String[] args) {
@@ -43,24 +66,33 @@ public class Main extends Application {
 	}
 
 	public void loadChromDriver(String username, String password) {
-		System.out.println("Start");
-		mainContainer.setScreen("GumTree");
+		System.out.println("LoadingScreen");
+		mainContainer.setScreen("LoadingScreen");
 
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
 				String exePath = "dependencies/chromedriver.exe";
 				System.setProperty("webdriver.chrome.driver", exePath);
-//				driver = new ChromeDriver();
-//	    		driver.get("http://google.com");
+				// driver = new ChromeDriver();
+				// driver.get("http://google.com");
 				ChromeOptions options = new ChromeOptions();
 				options.addArguments("user-data-dir=C:/Users/hamza/AppData/Local/Google/Chrome/User Data");
 				driver = new ChromeDriver(options);
-				driver.navigate().to("http://www.google.com");
-//				loginGumtree();
+
+				System.out.println("Driver = " + driver);
+
+				loginGumtree();
 				// loginGoogle(username, password); // start the google login
 			}
 		}).start();
+		// try {
+		//// Thread.sleep(10000);
+		// } catch (InterruptedException e) {
+		// System.out.println("NOT");
+		// e.printStackTrace();
+		// }
+		mainContainer.setScreen("GumTree");
 	}
 
 	public void loginGumtree() {
@@ -68,7 +100,9 @@ public class Main extends Application {
 			@Override
 			public void run() {
 				System.out.println("Login Gumtree");
-				driver.findElement(By.xpath("//*[@id=\"login-form\"]/div/button")).click();
+				driver.navigate().to("https://my.gumtree.com/login");
+				// driver.findElement(By.xpath("//*[@id=\"login-form\"]/div/button")).click();
+				// driver.navigate().to("https://google.com");
 			}
 		}).start();
 	}
