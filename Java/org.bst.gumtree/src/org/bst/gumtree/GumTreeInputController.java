@@ -3,8 +3,7 @@ package org.bst.gumtree;
 import java.nio.file.Paths;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.TextArea;
-import javafx.scene.text.TextFlow;
+import javafx.scene.control.Button;
 
 public class GumTreeInputController implements ControlledScreen {
 
@@ -18,19 +17,9 @@ public class GumTreeInputController implements ControlledScreen {
 	}
 
 	@FXML
-	private TextFlow chatLog;
-
-	@FXML
-	private TextArea chatText;
-
-	@FXML
 	protected void sendMassage() {
 		System.out.println(Paths.get(".").toAbsolutePath().normalize().toString());
 		System.out.println("Send");
 	}
-
-	public void recivedMassage(String msg) {
-		System.out.println("Recceive");
-	}
-
+	
 }

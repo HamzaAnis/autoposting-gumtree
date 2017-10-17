@@ -101,7 +101,8 @@ public class Main extends Application {
 			public void run() {
 				System.out.println("Login Gumtree");
 				driver.navigate().to("https://my.gumtree.com/login");
-				// driver.findElement(By.xpath("//*[@id=\"login-form\"]/div/button")).click();
+				driver.findElement(By.xpath("//*[@id=\"login-form\"]/div/button")).click();
+				driver.findElement(By.xpath("/html/body/div[2]/div/main/section/div/div/a")).click();
 				// driver.navigate().to("https://google.com");
 			}
 		}).start();
