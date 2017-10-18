@@ -188,7 +188,7 @@ public class Main extends Application {
 												driver.findElement(By
 														.xpath("//*[@id=\"post-ad-container\"]/div[2]/div[1]/div/div[1]/div[1]/button"))
 														.click();
-											} catch (Exception e) {
+											} catch (Exception e1) {
 												System.out.println("Location exception 1");
 
 											}
