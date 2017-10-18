@@ -1,17 +1,16 @@
 package org.bst.gumtree;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 
 public class Main extends Application {
 	WebDriver driver;
@@ -101,11 +100,77 @@ public class Main extends Application {
 			public void run() {
 				System.out.println("Login Gumtree");
 				driver.navigate().to("https://my.gumtree.com/login");
+				// Google login
 				driver.findElement(By.xpath("//*[@id=\"login-form\"]/div/button")).click();
-				driver.findElement(By.xpath("/html/body/div[2]/div/main/section/div/div/a")).click();
 				// driver.navigate().to("https://google.com");
 			}
 		}).start();
+	}
+
+	public void postADD(String category, String Location, String Title, String youtube, String Description,
+			String price, String Phone) {
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				// Post ad
+				driver.findElement(By.xpath("/html/body/div[2]/div/main/section/div/div/a")).click();
+
+				try {
+					Thread.sleep(2000);
+					driver.findElement(By.xpath("/html/body/div[2]/div/div[1]/div/input[2]")).click();
+				} catch (Exception e) {
+					System.out.println("No draft");
+				}
+				// category
+				driver.findElement(By.xpath("//*[@id=\"post-ad_title-suggestion\"]")).sendKeys(category);
+				// pressing enter
+				driver.findElement(By.xpath("//*[@id=\"post-ad_title-suggestion\"]")).sendKeys(Keys.ENTER);
+				try {
+					Thread.sleep(1000);
+					driver.findElement(By.xpath("/html/body/div[2]/div/div[1]/div/input[2]")).click();
+				} catch (Exception e) {
+					System.out.println("No draft");
+				}
+				driver.findElement(By.xpath("//*[@id=\"post-ad_title-suggestion\"]")).sendKeys(Keys.ENTER);
+
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {
+					System.out.println("Thread sleep error");
+					e.printStackTrace();
+				}
+				// location
+				driver.findElement(By.xpath("//*[@id=\"post-ad_postcode\"]")).sendKeys(Location);
+				driver.findElement(By.xpath("//*[@id=\"post-ad_postcode\"]")).sendKeys(Keys.ENTER);
+				try {
+					Thread.sleep(2000);
+				} catch (InterruptedException e) {
+					System.out.println("Thread sleep error");
+					e.printStackTrace();
+				}
+				// title
+				driver.findElement(By.xpath("//*[@id=\"post-ad_title\"]")).sendKeys(Title);
+
+				// youtube link
+				driver.findElement(By.xpath("//*[@id=\"post-ad_youtube\"]")).sendKeys(youtube);
+
+				// description
+				driver.findElement(By.xpath("//*[@id=\"description\"]")).sendKeys(Description);
+
+				// price
+				driver.findElement(By.xpath("//*[@id=\"price\"]")).sendKeys(price);
+
+				// radio button
+				driver.findElement(
+						By.xpath("//*[@id=\"post-ad-container\"]/div[11]/div/div[2]/div[1]/div/div[1]/label")).click();
+				// phone number
+				driver.findElement(By.xpath("//*[@id=\"price\"]")).sendKeys(price);
+
+				// conformation /html/body/div[2]/div/div[3]/main/div[1]/a[1]
+
+			}
+		}).start();
+
 	}
 
 	public void loginGoogle(String username, String Password) {
