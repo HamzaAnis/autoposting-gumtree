@@ -63,5 +63,7 @@
       </Label>
       <TextField fx:id="txtfieldPhone" layoutX="180.0" layoutY="436.0" prefHeight="31.0" prefWidth="253.0" />
       <Button fx:id="buttonPost" layoutX="314.0" layoutY="494.0" mnemonicParsing="false" onAction="#postAd" text="Post Your Ad" />
+      <Button fx:id="buttonLoadFile" layoutX="33.0" layoutY="494.0" mnemonicParsing="false" onAction="#loadFIleaction" text="Load FIle" />
+      <Label fx:id="lblFileName" layoutX="144.0" layoutY="499.0" />
    </children>
 </AnchorPane>

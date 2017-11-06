@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 public class GumTreeInputController implements ControlledScreen {
@@ -26,6 +27,10 @@ public class GumTreeInputController implements ControlledScreen {
 	TextField txtfieldPhone;
 	@FXML
 	Button buttonPost;
+	@FXML
+	Label lblFileName;
+	@FXML
+	Button buttonLoadFile;
 
 	ScreensController myScreenController;
 	Main myLogicalParent;
@@ -40,6 +45,10 @@ public class GumTreeInputController implements ControlledScreen {
 	protected void sendMassage() {
 		System.out.println(Paths.get(".").toAbsolutePath().normalize().toString());
 		System.out.println("Send");
+	}
+
+	@FXML
+	protected void loadFIleaction() {
 	}
 
 	@FXML
