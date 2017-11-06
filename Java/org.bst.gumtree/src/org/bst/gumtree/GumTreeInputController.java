@@ -96,30 +96,39 @@ public class GumTreeInputController implements ControlledScreen {
 
 	@FXML
 	protected void postAd() {
-		System.out.println("Calling");
-		if (txtfieldTitle.getText().equals("") || txtfieldCategory.getText().equals("")
-				|| txtfieldPrice.getText().equals("") || txtfieldDiscription.getText().equals("")
-				|| txtfieldPhone.getText().equals("") || txtfieldPrice.getText().equals("")) {
+		System.out.println("Calling Post Ad");
+		if (lblFileName.getText().equals("")) {
 			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Error Dialog");
-			alert.setHeaderText("Enter required fields");
-			alert.setContentText("Please enter all details that are necesary");
+			alert.setTitle("Load Data File");
+			alert.setHeaderText("Load file");
+			alert.setContentText("Please load file then continue");
 			alert.showAndWait();
-			return;
 		}
-		String s = txtfieldDiscription.getText();
-		String[] words = s.trim().split("\\s+");
-		if (words.length <= 12) {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Less Description");
-			alert.setHeaderText("Description Field");
-			alert.setContentText("12 words minimum.");
-			alert.showAndWait();
-			return;
+		else{
+			if (txtfieldTitle.getText().equals("") || txtfieldCategory.getText().equals("")
+					|| txtfieldPrice.getText().equals("") || txtfieldDiscription.getText().equals("")
+					|| txtfieldPhone.getText().equals("") || txtfieldPrice.getText().equals("")) {
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("Error Dialog");
+				alert.setHeaderText("Enter required fields");
+				alert.setContentText("Please enter all details that are necesary");
+				alert.showAndWait();
+				return;
+			}
+			String s = txtfieldDiscription.getText();
+			String[] words = s.trim().split("\\s+");
+			if (words.length <= 12) {
+				Alert alert = new Alert(AlertType.ERROR);
+				alert.setTitle("Less Description");
+				alert.setHeaderText("Description Field");
+				alert.setContentText("12 words minimum.");
+				alert.showAndWait();
+				return;
+			}
+			myLogicalParent.postADD(txtfieldCategory.getText(), txtfieldLocation.getText(), txtfieldTitle.getText(),
+					txtfieldYoutube.getText(), txtfieldDiscription.getText(), txtfieldPrice.getText(),
+					txtfieldPhone.getText());
 		}
-		myLogicalParent.postADD(txtfieldCategory.getText(), txtfieldLocation.getText(), txtfieldTitle.getText(),
-				txtfieldYoutube.getText(), txtfieldDiscription.getText(), txtfieldPrice.getText(),
-				txtfieldPhone.getText());
 	}
 
 }
