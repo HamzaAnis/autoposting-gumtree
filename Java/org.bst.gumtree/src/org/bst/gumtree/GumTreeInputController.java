@@ -1,13 +1,21 @@
 package org.bst.gumtree;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.nio.file.Paths;
 
+import com.csvreader.CsvReader;
+
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 public class GumTreeInputController implements ControlledScreen {
 
@@ -31,7 +39,8 @@ public class GumTreeInputController implements ControlledScreen {
 	Label lblFileName;
 	@FXML
 	Button buttonLoadFile;
-
+	@FXML
+	Node node;
 	ScreensController myScreenController;
 	Main myLogicalParent;
 
@@ -49,6 +58,40 @@ public class GumTreeInputController implements ControlledScreen {
 
 	@FXML
 	protected void loadFIleaction() {
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
+		FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
+		fileChooser.getExtensionFilters().add(extFilter);
+		File file = fileChooser.showOpenDialog(new Stage());
+		System.out.println(file.getAbsolutePath());
+		lblFileName.setText(file.getName());
+		readCSV(file.getAbsolutePath());
+	}
+
+	public static void readCSV(String filename) {
+		try {
+			CsvReader products = new CsvReader(filename);
+
+			products.readHeaders();
+
+			while (products.readRecord()) {
+				String category = products.get("Category");
+				String Location = products.get("Location");
+				String Title = products.get("Title");
+				String Description = products.get("Description");
+				String Price = products.get("Price");
+				String phone = products.get("Phone");
+				System.out.println(
+						category + "  " + Location + "   " + Title + "  " + Description + "  " + Price + "  " + phone);
+			}
+
+			products.close();
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@FXML

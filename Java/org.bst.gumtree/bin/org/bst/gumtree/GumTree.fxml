@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.TextFlow?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="548.0" prefWidth="454.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.bst.gumtree.GumTreeInputController">
+   <children>
+      <Label layoutX="65.0" layoutY="53.0" text="Category">
+         <font>
+            <Font name="Lato Black" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="65.0" layoutY="90.0" text="Location">
+         <font>
+            <Font name="Lato Black" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="180.0" layoutY="-4.0" text="Category">
+         <font>
+            <Font name="orange juice" size="30.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtfieldCategory" layoutX="180.0" layoutY="49.0" prefHeight="31.0" prefWidth="253.0" />
+      <TextField fx:id="txtfieldLocation" layoutX="180.0" layoutY="86.0" prefHeight="31.0" prefWidth="159.0" />
+      <Label layoutX="65.0" layoutY="132.0" text="Title">
+         <font>
+            <Font name="Lato Black" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtfieldTitle" layoutX="180.0" layoutY="128.0" prefHeight="31.0" prefWidth="253.0" />
+      <Label layoutX="65.0" layoutY="178.0" text="Youtube">
+         <font>
+            <Font name="Lato Black" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtfieldYoutube" layoutX="180.0" layoutY="174.0" prefHeight="31.0" prefWidth="253.0" />
+      <Label layoutX="65.0" layoutY="223.0" text="Description">
+         <font>
+            <Font name="Lato Black" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtfieldDiscription" layoutX="180.0" layoutY="223.0" prefHeight="138.0" prefWidth="253.0" />
+      <Label layoutX="63.0" layoutY="388.0" text="Price">
+         <font>
+            <Font name="Lato Black" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtfieldPrice" layoutX="180.0" layoutY="373.0" prefHeight="31.0" prefWidth="159.0" />
+      <Label layoutX="65.0" layoutY="440.0" text="Phone">
+         <font>
+            <Font name="Lato Black" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtfieldPhone" layoutX="180.0" layoutY="436.0" prefHeight="31.0" prefWidth="253.0" />
+      <Button fx:id="buttonPost" layoutX="314.0" layoutY="494.0" mnemonicParsing="false" onAction="#postAd" text="Post Your Ad" />
+      <Button fx:id="buttonLoadFile" layoutX="33.0" layoutY="494.0" mnemonicParsing="false" onAction="#loadFIleaction" text="Load FIle" />
+      <Label fx:id="lblFileName" layoutX="144.0" layoutY="499.0" />
+   </children>
+</AnchorPane>
