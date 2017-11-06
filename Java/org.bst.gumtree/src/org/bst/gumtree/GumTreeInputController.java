@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 
 import com.csvreader.CsvReader;
 
@@ -19,6 +20,7 @@ import javafx.stage.Stage;
 
 public class GumTreeInputController implements ControlledScreen {
 
+	static ArrayList<Ad> data = new ArrayList<Ad>();
 	@FXML
 	TextField txtfieldCategory;
 	@FXML
@@ -81,8 +83,12 @@ public class GumTreeInputController implements ControlledScreen {
 				String Description = products.get("Description");
 				String Price = products.get("Price");
 				String phone = products.get("Phone");
-				System.out.println(
-						category + "  " + Location + "   " + Title + "  " + Description + "  " + Price + "  " + phone);
+				Ad temp = new Ad("furniture", Location, Title, Description, Price, phone);
+				data.add(temp);
+				temp.toString();
+				System.out.println("Categotry is "+category);
+				System.out.println("Location is "+Location);
+				System.out.println("Price is "+Price);
 			}
 
 			products.close();
@@ -103,31 +109,39 @@ public class GumTreeInputController implements ControlledScreen {
 			alert.setHeaderText("Load file");
 			alert.setContentText("Please load file then continue");
 			alert.showAndWait();
-		}
-		else{
-			if (txtfieldTitle.getText().equals("") || txtfieldCategory.getText().equals("")
-					|| txtfieldPrice.getText().equals("") || txtfieldDiscription.getText().equals("")
-					|| txtfieldPhone.getText().equals("") || txtfieldPrice.getText().equals("")) {
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Error Dialog");
-				alert.setHeaderText("Enter required fields");
-				alert.setContentText("Please enter all details that are necesary");
-				alert.showAndWait();
-				return;
+		} else {
+			for (int i = 0; i < data.size(); i++) {
+				Ad temp = data.get(i);
+				txtfieldCategory.setText(temp.getCategory());
+				txtfieldDiscription.setText(temp.getDescription());
+				txtfieldLocation.setText(temp.getLocation());
+				txtfieldPhone.setText(temp.getPhone());
+				txtfieldPrice.setText(temp.getPrice());
+				txtfieldTitle.setText(temp.getTitle());
+
+				if (txtfieldTitle.getText().equals("") || txtfieldCategory.getText().equals("")
+						|| txtfieldPrice.getText().equals("") || txtfieldDiscription.getText().equals("")) {
+					Alert alert = new Alert(AlertType.ERROR);
+					alert.setTitle("Error Dialog");
+					alert.setHeaderText("Enter required fields");
+					alert.setContentText("Please enter all details that are necesary");
+					alert.showAndWait();
+					return;
+				}
+				String s = txtfieldDiscription.getText();
+				String[] words = s.trim().split("\\s+");
+				if (words.length <= 12) {
+					Alert alert = new Alert(AlertType.ERROR);
+					alert.setTitle("Less Description");
+					alert.setHeaderText("Description Field");
+					alert.setContentText("12 words minimum.");
+					alert.showAndWait();
+					return;
+				}
+				myLogicalParent.postADD(txtfieldCategory.getText(), txtfieldLocation.getText(), txtfieldTitle.getText(),
+						txtfieldYoutube.getText(), txtfieldDiscription.getText(), txtfieldPrice.getText(),
+						txtfieldPhone.getText());
 			}
-			String s = txtfieldDiscription.getText();
-			String[] words = s.trim().split("\\s+");
-			if (words.length <= 12) {
-				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Less Description");
-				alert.setHeaderText("Description Field");
-				alert.setContentText("12 words minimum.");
-				alert.showAndWait();
-				return;
-			}
-			myLogicalParent.postADD(txtfieldCategory.getText(), txtfieldLocation.getText(), txtfieldTitle.getText(),
-					txtfieldYoutube.getText(), txtfieldDiscription.getText(), txtfieldPrice.getText(),
-					txtfieldPhone.getText());
 		}
 	}
 

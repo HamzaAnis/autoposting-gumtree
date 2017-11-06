@@ -5,6 +5,8 @@ public class Ad {
 	String Location;
 	String Price;
 	String Description;
+	String Category;
+	String Phone;
 
 	public String getTitle() {
 		return Title;
@@ -60,11 +62,9 @@ public class Ad {
 		Category = category;
 	}
 
-	String Phone;
-	String Category;
 
-	public Ad(String Category, String Location, String Title, String Description, String Price, String Phone) {
-		this.Category = Category;
+	public Ad(String category, String Location, String Title, String Description, String Price, String Phone) {
+		this.Category = category;
 		this.Location = Location;
 		this.Title = Title;
 		this.Description = Description;

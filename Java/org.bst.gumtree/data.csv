@@ -1,8 +1,9 @@
-﻿Category,Location,Title,Description,Price,Phone
-151,E14 5JP,3+2 large Italian style sofa Set brand new ,"
+﻿Number,Location,Title,Description,Price,Phone,Category
+1,E145JP,3+2 large Italian style sofa Set brand new ,"
 Brand new 
 Best quality 
 Pre assembled 
 Hardwood frame 
 Easy to drop 
-",230,
+Easy to drop and comfortable
+",230,,151
