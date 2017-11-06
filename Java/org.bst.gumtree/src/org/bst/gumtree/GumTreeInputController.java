@@ -110,8 +110,9 @@ public class GumTreeInputController implements ControlledScreen {
 			alert.setContentText("Please load file then continue");
 			alert.showAndWait();
 		} else {
-			for (int i = 0; i < data.size(); i++) {
-				Ad temp = data.get(i);
+			for (int l = 0; l < data.size(); l++) {
+				System.out.println("data Size is "+data.size());
+				Ad temp = data.get(l);
 				txtfieldCategory.setText(temp.getCategory());
 				txtfieldDiscription.setText(temp.getDescription());
 				txtfieldLocation.setText(temp.getLocation());
@@ -139,7 +140,7 @@ public class GumTreeInputController implements ControlledScreen {
 					return;
 				}
 				myLogicalParent.postADD(txtfieldCategory.getText(), txtfieldLocation.getText(), txtfieldTitle.getText(),
-						txtfieldYoutube.getText(), txtfieldDiscription.getText(), txtfieldPrice.getText(),
+						txtfieldYoutube.getText(), temp.getDescription(), txtfieldPrice.getText(),
 						txtfieldPhone.getText());
 			}
 		}

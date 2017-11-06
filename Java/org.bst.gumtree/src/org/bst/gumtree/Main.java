@@ -117,13 +117,7 @@ public class Main extends Application {
 
 	public void postADD(String category, String Location, String Title, String youtube, String Description,
 			String price, String Phone) {
-		if (!started) {
-			started = true;
-			new Thread(new Runnable() {
-				@Override
-				public void run() {
-
-					while (true) {
+						while (true) {
 						System.out.println("Checking logging in");
 						if (loggedIn) {
 							System.out.println("It is logged in");
@@ -224,23 +218,32 @@ public class Main extends Application {
 									driver.findElement(By.xpath("//*[@id=\"price\"]")).sendKeys(price);
 
 									// radio button
-									driver.findElement(By
-											.xpath("//*[@id=\"post-ad-container\"]/div[11]/div/div[2]/div[1]/div/div[1]/label"))
-											.click();
-									// phone number
-									driver.findElement(By.xpath("//*[@id=\"post-ad_contactTelephone\"]"))
-											.sendKeys(Phone);
+									// driver.findElement(By
+									// .xpath("//*[@id=\"post-ad-container\"]/div[11]/div/div[2]/div[1]/div/div[1]/label"))
+									// .click();
+									// // phone number
+									// driver.findElement(By.xpath("//*[@id=\"post-ad_contactTelephone\"]"))
+									// .sendKeys(Phone);
 									// post ad button
 									driver.findElement(By.xpath("//*[@id=\"submit-button-2\"]")).click();
 
+									notFound = true;
+									while (notFound) {
+										try {
+											driver.findElement(
+													By.xpath("/html/body/div[2]/div/div[3]/main/div[1]/a[1]")).click();
+											notFound = false;
+											System.out.println("Next Post Ad is displayed");
+										} catch (Exception e) {
+											System.out.println("Next Post Exception Exception");
+										}
+									}
 									try {
 										Thread.sleep(2000);
 									} catch (InterruptedException e) {
 										System.out.println("Thread sleep error");
 										e.printStackTrace();
 									}
-									driver.findElement(By.xpath("/html/body/div[2]/div/div[3]/main/div[1]/a[1]"))
-											.click();
 									// conformation
 
 								}
