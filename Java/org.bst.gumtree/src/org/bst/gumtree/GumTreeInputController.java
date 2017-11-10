@@ -117,8 +117,6 @@ public class GumTreeInputController implements ControlledScreen {
 						Thread t = new Thread(new Runnable() {
 							public void run() {
 								int l = parameter;
-								System.out.println("L is " + l);
-								System.out.println("data Size is " + data.size());
 								Ad temp = data.get(l);
 								txtfieldCategory.clear();
 								txtfieldDiscription.clear();
@@ -154,20 +152,23 @@ public class GumTreeInputController implements ControlledScreen {
 									alert.showAndWait();
 									return;
 								}
-								myLogicalParent.postADD(txtfieldCategory.getText(), txtfieldLocation.getText(),
-										txtfieldTitle.getText(), txtfieldYoutube.getText(), temp.getDescription(),
-										txtfieldPrice.getText(), txtfieldPhone.getText());
+								myLogicalParent.postADD(temp.getCategory(), temp.getLocation(), temp.getTitle(),
+										txtfieldYoutube.getText(), temp.getDescription(), temp.getPrice(),
+										temp.getPhone());
 
 							}
 						});
 						t.start();
-						try {
-							t.join();
-						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
-						System.out.println("\n\n\\n\n\n\n\n\\t\t\t\t\t\tThread RELEASES WIth L = "+ l+"\n\n\n\n\n\n");
+							try {
+								t.join();
+								
+							} catch (InterruptedException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
+					
+						System.out
+								.println("\n\n\\n\n\n\n\n\\t\t\t\t\t\tThread RELEASES WIth L = " + l + "\n\n\n\n\n\n");
 					} // for loop
 
 				}
