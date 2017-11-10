@@ -25,7 +25,7 @@
             <Font name="Lato Black" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="180.0" layoutY="-4.0" text="Category">
+      <Label layoutX="180.0" layoutY="-4.0" text="GumTree">
          <font>
             <Font name="orange juice" size="30.0" />
          </font>

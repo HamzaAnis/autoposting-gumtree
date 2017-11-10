@@ -86,9 +86,9 @@ public class GumTreeInputController implements ControlledScreen {
 				Ad temp = new Ad("furniture", Location, Title, Description, Price, phone);
 				data.add(temp);
 				temp.toString();
-				System.out.println("Categotry is "+category);
-				System.out.println("Location is "+Location);
-				System.out.println("Price is "+Price);
+				System.out.println("Categotry is " + category);
+				System.out.println("Location is " + Location);
+				System.out.println("Price is " + Price);
 			}
 
 			products.close();
@@ -102,48 +102,75 @@ public class GumTreeInputController implements ControlledScreen {
 
 	@FXML
 	protected void postAd() {
-		System.out.println("Calling Post Ad");
-		if (lblFileName.getText().equals("")) {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Load Data File");
-			alert.setHeaderText("Load file");
-			alert.setContentText("Please load file then continue");
-			alert.showAndWait();
-		} else {
-			for (int l = 0; l < data.size(); l++) {
-				System.out.println("data Size is "+data.size());
-				Ad temp = data.get(l);
-				txtfieldCategory.setText(temp.getCategory());
-				txtfieldDiscription.setText(temp.getDescription());
-				txtfieldLocation.setText(temp.getLocation());
-				txtfieldPhone.setText(temp.getPhone());
-				txtfieldPrice.setText(temp.getPrice());
-				txtfieldTitle.setText(temp.getTitle());
+		Thread addThread = new Thread(new Runnable() {
+			public void run() {
+				System.out.println("Calling Post Ad");
+				if (lblFileName.getText().equals("")) {
+					Alert alert = new Alert(AlertType.ERROR);
+					alert.setTitle("Load Data File");
+					alert.setHeaderText("Load file");
+					alert.setContentText("Please load file then continue");
+					alert.showAndWait();
+				} else {
+					Thread t = new Thread(new Runnable() {
+						public void run() {
+							for (int l = 0; l < data.size(); l++) {
 
-				if (txtfieldTitle.getText().equals("") || txtfieldCategory.getText().equals("")
-						|| txtfieldPrice.getText().equals("") || txtfieldDiscription.getText().equals("")) {
-					Alert alert = new Alert(AlertType.ERROR);
-					alert.setTitle("Error Dialog");
-					alert.setHeaderText("Enter required fields");
-					alert.setContentText("Please enter all details that are necesary");
-					alert.showAndWait();
-					return;
+								System.out.println("L is " + l);
+								System.out.println("data Size is " + data.size());
+								Ad temp = data.get(l);
+								txtfieldCategory.clear();
+								txtfieldDiscription.clear();
+								txtfieldLocation.clear();
+								txtfieldPhone.clear();
+								txtfieldPrice.clear();
+								txtfieldTitle.clear();
+
+								txtfieldCategory.setText(temp.getCategory());
+								txtfieldDiscription.setText(temp.getDescription());
+								txtfieldLocation.setText(temp.getLocation());
+								txtfieldPhone.setText(temp.getPhone());
+								txtfieldPrice.setText(temp.getPrice());
+								txtfieldTitle.setText(temp.getTitle());
+
+								if (txtfieldTitle.getText().equals("") || txtfieldCategory.getText().equals("")
+										|| txtfieldPrice.getText().equals("")
+										|| txtfieldDiscription.getText().equals("")) {
+									Alert alert = new Alert(AlertType.ERROR);
+									alert.setTitle("Error Dialog");
+									alert.setHeaderText("Enter required fields");
+									alert.setContentText("Please enter all details that are necesary");
+									alert.showAndWait();
+									return;
+								}
+								String s = txtfieldDiscription.getText();
+								String[] words = s.trim().split("\\s+");
+								if (words.length <= 12) {
+									Alert alert = new Alert(AlertType.ERROR);
+									alert.setTitle("Less Description");
+									alert.setHeaderText("Description Field");
+									alert.setContentText("12 words minimum.");
+									alert.showAndWait();
+									return;
+								}
+								myLogicalParent.postADD(txtfieldCategory.getText(), txtfieldLocation.getText(),
+										txtfieldTitle.getText(), txtfieldYoutube.getText(), temp.getDescription(),
+										txtfieldPrice.getText(), txtfieldPhone.getText());
+
+							}
+
+						}// for loop
+					});
+					t.start();
+					try {
+						t.join();
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
-				String s = txtfieldDiscription.getText();
-				String[] words = s.trim().split("\\s+");
-				if (words.length <= 12) {
-					Alert alert = new Alert(AlertType.ERROR);
-					alert.setTitle("Less Description");
-					alert.setHeaderText("Description Field");
-					alert.setContentText("12 words minimum.");
-					alert.showAndWait();
-					return;
-				}
-				myLogicalParent.postADD(txtfieldCategory.getText(), txtfieldLocation.getText(), txtfieldTitle.getText(),
-						txtfieldYoutube.getText(), temp.getDescription(), txtfieldPrice.getText(),
-						txtfieldPhone.getText());
 			}
-		}
+		});
+		addThread.start();
 	}
-
 }
