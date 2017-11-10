@@ -112,10 +112,11 @@ public class GumTreeInputController implements ControlledScreen {
 					alert.setContentText("Please load file then continue");
 					alert.showAndWait();
 				} else {
-					Thread t = new Thread(new Runnable() {
-						public void run() {
-							for (int l = 0; l < data.size(); l++) {
-
+					for (int l = 0; l < data.size(); l++) {
+						final int parameter = l;
+						Thread t = new Thread(new Runnable() {
+							public void run() {
+								int l = parameter;
 								System.out.println("L is " + l);
 								System.out.println("data Size is " + data.size());
 								Ad temp = data.get(l);
@@ -158,16 +159,17 @@ public class GumTreeInputController implements ControlledScreen {
 										txtfieldPrice.getText(), txtfieldPhone.getText());
 
 							}
+						});
+						t.start();
+						try {
+							t.join();
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+						System.out.println("\n\n\\n\n\n\n\n\\t\t\t\t\t\tThread RELEASES WIth L = "+ l+"\n\n\n\n\n\n");
+					} // for loop
 
-						}// for loop
-					});
-					t.start();
-					try {
-						t.join();
-					} catch (InterruptedException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
 				}
 			}
 		});
