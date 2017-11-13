@@ -74,17 +74,7 @@ public class Ad {
 		this.Phone = Phone;
 		Images = new ArrayList<String>();
 		this.Images = Img;
-		System.out.println("The function size is  "+Img.size());
-		System.out.println("This one is  "+this.Images.size());
-
-		for (int i = 0; i < 9; i++) {
-			System.out.println(this.Images.get(i));
-		}
-		try {
-			Thread.sleep(10000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		System.out.println("The function size is  "+Img.size());
+//		System.out.println("This one is  "+this.Images.size());
 	}
 }

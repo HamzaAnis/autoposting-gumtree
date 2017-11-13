@@ -161,7 +161,7 @@ public class GumTreeInputController implements ControlledScreen {
 								}
 								myLogicalParent.postADD(temp.getCategory(), temp.getLocation(), temp.getTitle(),
 										txtfieldYoutube.getText(), temp.getDescription(), temp.getPrice(),
-										temp.getPhone());
+										temp.getPhone(),temp.Images);
 
 							}
 						});

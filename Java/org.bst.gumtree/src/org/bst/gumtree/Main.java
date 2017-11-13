@@ -1,16 +1,21 @@
 package org.bst.gumtree;
 
+import java.awt.datatransfer.StringSelection;
+import java.util.ArrayList;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
+import com.sun.glass.ui.Robot;
+import com.sun.javafx.tk.Toolkit;
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -119,7 +124,7 @@ public class Main extends Application {
 	}
 
 	public void postADD(String category, String Location, String Title, String youtube, String Description,
-			String price, String Phone) {
+			String price, String Phone, ArrayList<String> Images) {
 		while (true) {
 			try {
 				System.out.println("Checking logging in");
@@ -212,6 +217,25 @@ public class Main extends Application {
 
 					// price
 					driver.findElement(By.xpath("//*[@id=\"price\"]")).sendKeys(price);
+
+					// Images
+					for (int i = 0; i < 9; i++) {
+						driver.findElement(By.className("image-uploadab-add")).click();// .sendKeys(Images.get(i));
+						// put path to your image in a clipboard
+						StringSelection ss = new StringSelection(Images.get(i));
+						Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
+
+						// imitate mouse events like ENTER, CTRL+C, CTRL+V
+						Robot robot = new Robot();
+						robot.keyPress(KeyEvent.VK_ENTER);
+						robot.keyRelease(KeyEvent.VK_ENTER);
+						robot.keyPress(KeyEvent.VK_CONTROL);
+						robot.keyPress(KeyEvent.VK_V);
+						robot.keyRelease(KeyEvent.VK_V);
+						robot.keyRelease(KeyEvent.VK_CONTROL);
+						robot.keyPress(KeyEvent.VK_ENTER);
+						robot.keyRelease(KeyEvent.VK_ENTER);
+					}
 
 					// radio button
 					// driver.findElement(By
