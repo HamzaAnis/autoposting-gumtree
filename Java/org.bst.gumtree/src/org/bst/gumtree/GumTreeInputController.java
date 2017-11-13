@@ -83,6 +83,10 @@ public class GumTreeInputController implements ControlledScreen {
 				String Description = products.get("Description");
 				String Price = products.get("Price");
 				String phone = products.get("Phone");
+				ArrayList<String> Images = new ArrayList<String>();
+				for (int i = 0; i < 10; i++) {
+					String toPush = products.get("Image" + i);
+				}
 				Ad temp = new Ad("furniture", Location, Title, Description, Price, phone);
 				data.add(temp);
 				temp.toString();
@@ -159,14 +163,14 @@ public class GumTreeInputController implements ControlledScreen {
 							}
 						});
 						t.start();
-							try {
-								t.join();
-								
-							} catch (InterruptedException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
-							}
-					
+						try {
+							t.join();
+
+						} catch (InterruptedException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+
 						System.out
 								.println("\n\n\\n\n\n\n\n\\t\t\t\t\t\tThread RELEASES WIth L = " + l + "\n\n\n\n\n\n");
 					} // for loop
