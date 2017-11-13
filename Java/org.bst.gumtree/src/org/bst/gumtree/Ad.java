@@ -1,5 +1,7 @@
 package org.bst.gumtree;
 
+import java.util.ArrayList;
+
 public class Ad {
 	String Title;
 	String Location;
@@ -7,6 +9,7 @@ public class Ad {
 	String Description;
 	String Category;
 	String Phone;
+	public ArrayList<String> Images;
 
 	public String getTitle() {
 		return Title;
@@ -62,13 +65,26 @@ public class Ad {
 		Category = category;
 	}
 
-
-	public Ad(String category, String Location, String Title, String Description, String Price, String Phone) {
+	public Ad(String category, String Location, String Title, String Description, String Price, String Phone,ArrayList<String> Img) {
 		this.Category = category;
 		this.Location = Location;
 		this.Title = Title;
 		this.Description = Description;
 		this.Price = Price;
 		this.Phone = Phone;
+		Images = new ArrayList<String>();
+		this.Images = Img;
+		System.out.println("The function size is  "+Img.size());
+		System.out.println("This one is  "+this.Images.size());
+
+		for (int i = 0; i < 9; i++) {
+			System.out.println(this.Images.get(i));
+		}
+		try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
