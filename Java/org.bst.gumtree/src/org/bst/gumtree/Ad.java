@@ -65,7 +65,9 @@ public class Ad {
 		Category = category;
 	}
 
-	public Ad(String category, String Location, String Title, String Description, String Price, String Phone,ArrayList<String> Img) {
+	public Ad(String category, String Location, String Title, String Description, String Price, String Phone,
+			String Image1, String Image2, String Image3, String Image4, String Image5, String Image6, String Image7,
+			String Image8, String Image9) {
 		this.Category = category;
 		this.Location = Location;
 		this.Title = Title;
@@ -73,8 +75,18 @@ public class Ad {
 		this.Price = Price;
 		this.Phone = Phone;
 		Images = new ArrayList<String>();
-		this.Images = Img;
-//		System.out.println("The function size is  "+Img.size());
-//		System.out.println("This one is  "+this.Images.size());
+
+		Images.add(Image1);
+		Images.add(Image2);
+		Images.add(Image3);
+		Images.add(Image4);
+		Images.add(Image5);
+		Images.add(Image6);
+		Images.add(Image7);
+		Images.add(Image8);
+		Images.add(Image9);
+
+		// System.out.println("The function size is "+Img.size());
+		// System.out.println("This one is "+this.Images.size());
 	}
 }

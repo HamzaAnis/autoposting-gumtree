@@ -1,10 +1,17 @@
 package org.bst.gumtree;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Iterator;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import com.csvreader.CsvReader;
 
@@ -67,45 +74,84 @@ public class GumTreeInputController implements ControlledScreen {
 		File file = fileChooser.showOpenDialog(new Stage());
 		System.out.println(file.getAbsolutePath());
 		lblFileName.setText(file.getName());
-		readCSV(file.getAbsolutePath());
-	}
-
-	public static void readCSV(String filename) {
 		try {
-			CsvReader products = new CsvReader(filename);
-
-			products.readHeaders();
-
-			while (products.readRecord()) {
-				String category = products.get("Category");
-				String Location = products.get("Location");
-				String Title = products.get("Title");
-				String Description = products.get("Description");
-				String Price = products.get("Price");
-				String phone = products.get("Phone");
-				ArrayList<String> Images = new ArrayList<String>();
-				for (int i = 1; i < 10; i++) {
-					String toPush = products.get("Image" + i);
-					System.out.println(toPush);
-					Images.add(toPush);
-				}
-				System.out.println("The size of the Image is  " + Images.size());
-				Ad temp = new Ad("furniture", Location, Title, Description, Price, phone, Images);
-				data.add(temp);
-				temp.toString();
-				System.out.println("Categotry is " + category);
-				System.out.println("Location is " + Location);
-				System.out.println("Price is " + Price);
-			}
-
-			products.close();
-
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			readExcel(file.getAbsolutePath());
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
+
+	public static void readExcel(String fileName) throws IOException {
+		File excel = new File(fileName);
+		FileInputStream fis = new FileInputStream(excel);
+		XSSFWorkbook book = new XSSFWorkbook(fis);
+		XSSFSheet sheet = book.getSheetAt(0);
+		Iterator<Row> itr = sheet.iterator();
+		while (itr.hasNext()) {
+			Row row = itr.next(); // Iterating over each column of Excel file
+			Iterator<Cell> cellIterator = row.cellIterator();
+			ArrayList<String> tempD = new ArrayList<String>();
+			while (cellIterator.hasNext()) {
+				Cell cell = cellIterator.next();
+				switch (cell.getCellType()) {
+				case Cell.CELL_TYPE_STRING:
+					System.out.print(cell.getStringCellValue() + "\t");
+					tempD.add(cell.getStringCellValue());
+					break;
+				case Cell.CELL_TYPE_NUMERIC:
+					System.out.print(cell.getNumericCellValue() + "\t");
+					tempD.add(Double.toString(cell.getNumericCellValue()));
+					break;
+				default:
+				}
+			}
+			Ad temp = new Ad("furniture", tempD.get(0), tempD.get(1), tempD.get(2), tempD.get(3), tempD.get(4),
+					tempD.get(5), tempD.get(6), tempD.get(7), tempD.get(8), tempD.get(9), tempD.get(10), tempD.get(11),
+					tempD.get(12), tempD.get(13));
+			data.add(temp);
+			System.out.println("");
+		}
+
+	}
+
+	// public static void readCSV(String filename) {
+	// try {
+	// CsvReader products = new CsvReader(filename);
+	//
+	// products.readHeaders();
+	//
+	// while (products.readRecord()) {
+	// String category = products.get("Category");
+	// String Location = products.get("Location");
+	// String Title = products.get("Title");
+	// String Description = products.get("Description");
+	// String Price = products.get("Price");
+	// String phone = products.get("Phone");
+	// ArrayList<String> Images = new ArrayList<String>();
+	// for (int i = 1; i < 10; i++) {
+	// String toPush = products.get("Image" + i);
+	// System.out.println(toPush);
+	// Images.add(toPush);
+	// }
+	// System.out.println("The size of the Image is " + Images.size());
+	// Ad temp = new Ad("furniture", Location, Title, Description, Price, phone,
+	// Images);
+	// data.add(temp);
+	// temp.toString();
+	// System.out.println("Categotry is " + category);
+	// System.out.println("Location is " + Location);
+	// System.out.println("Price is " + Price);
+	// }
+	//
+	// products.close();
+	//
+	// } catch (FileNotFoundException e) {
+	// e.printStackTrace();
+	// } catch (IOException e) {
+	// e.printStackTrace();
+	// }
+	// }
 
 	@FXML
 	protected void postAd() {
@@ -161,7 +207,7 @@ public class GumTreeInputController implements ControlledScreen {
 								}
 								myLogicalParent.postADD(temp.getCategory(), temp.getLocation(), temp.getTitle(),
 										txtfieldYoutube.getText(), temp.getDescription(), temp.getPrice(),
-										temp.getPhone(),temp.Images);
+										temp.getPhone(), temp.Images);
 
 							}
 						});

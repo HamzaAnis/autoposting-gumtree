@@ -106,35 +106,6 @@ public class Main extends Application {
 		mainContainer.setScreen("GumTree");
 	}
 
-	public static void readExcel(String fileName) throws IOException {
-		File excel = new File(fileName);
-		FileInputStream fis = new FileInputStream(excel);
-		XSSFWorkbook book = new XSSFWorkbook(fis);
-		XSSFSheet sheet = book.getSheetAt(0);
-		Iterator<Row> itr = sheet.iterator();
-		while (itr.hasNext()) {
-			Row row = itr.next(); // Iterating over each column of Excel file
-			Iterator<Cell> cellIterator = row.cellIterator();
-			while (cellIterator.hasNext()) {
-				Cell cell = cellIterator.next();
-				switch (cell.getCellType()) {
-				case Cell.CELL_TYPE_STRING:
-					System.out.print(cell.getStringCellValue() + "\t");
-					break;
-				case Cell.CELL_TYPE_NUMERIC:
-					System.out.print(cell.getNumericCellValue() + "\t");
-					break;
-				case Cell.CELL_TYPE_BOOLEAN:
-					System.out.print(cell.getBooleanCellValue() + "\t");
-					break;
-				default:
-				}
-			}
-			System.out.println("");
-		}
-
-	}
-
 	public void loginGumtree() {
 		new Thread(new Runnable() {
 			@Override
