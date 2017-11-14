@@ -15,5 +15,11 @@
 	<classpathentry kind="lib" path="lib/jna-4.1.0.jar"/>
 	<classpathentry kind="lib" path="lib/jna-platform-4.1.0.jar"/>
 	<classpathentry kind="lib" path="C:/Users/hamza/Documents/Visual Studio 2017/Projects/auto-posting-gumtree/Java/org.bst.gumtree/javacsv.jar"/>
+	<classpathentry kind="lib" path="lib/XLXS/commons-codec-1.10.jar"/>
+	<classpathentry kind="lib" path="lib/XLXS/poi-ooxml-3.11-beta2.jar"/>
+	<classpathentry kind="lib" path="lib/XLXS/poi-ooxml-schemas-3.11-beta2.jar"/>
+	<classpathentry kind="lib" path="lib/XLXS/stax-api-1.0.1.jar"/>
+	<classpathentry kind="lib" path="lib/XLXS/xmlbeans-2.6.0.jar"/>
+	<classpathentry kind="lib" path="lib/XLXS/poi-3.11-beta2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
