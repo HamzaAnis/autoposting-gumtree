@@ -209,6 +209,8 @@ public class Main extends Application {
 							System.out.println("Title is displayed");
 						} catch (Exception e) {
 							System.out.println("Title Exception");
+//							driver.findElement(By.xpath("//*[@id=\"post-ad_postcode\"]")).sendKeys(Keys.ENTER);
+							// Thread.sleep(2000);
 						}
 					}
 
@@ -221,24 +223,29 @@ public class Main extends Application {
 					// price
 					driver.findElement(By.xpath("//*[@id=\"price\"]")).sendKeys(price);
 
-					// Images
-					for (int i = 0; i < 9; i++) {
-						driver.findElement(By.className("image-uploadab-add")).click();// .sendKeys(Images.get(i));
-						// // put path to your image in a clipboard
-						// StringSelection ss = new StringSelection(Images.get(i));
-						// Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
-						//
-						// // imitate mouse events like ENTER, CTRL+C, CTRL+V
-						// Robot robot = new Robot();
-						// robot.keyPress(KeyEvent.VK_ENTER);
-						// robot.keyRelease(KeyEvent.VK_ENTER);
-						// robot.keyPress(KeyEvent.VK_CONTROL);
-						// robot.keyPress(KeyEvent.VK_V);
-						// robot.keyRelease(KeyEvent.VK_V);
-						// robot.keyRelease(KeyEvent.VK_CONTROL);
-						// robot.keyPress(KeyEvent.VK_ENTER);
-						// robot.keyRelease(KeyEvent.VK_ENTER);
-					}
+					// // Images
+					// for (int i = 0; i < 9; i++) {
+					// File f = new File(Images.get(i));
+					// System.out.println("The absolute path is " + f.getAbsolutePath());
+					driver.findElement(By.className("image-uploadab-add")).sendKeys(
+							"C:\\Users\\hamza\\Documents\\Visual Studio 2017\\Projects\\auto-posting-gumtree\\Java\\org.bst.gumtree\\Output.png");
+
+					Thread.sleep(10000);
+					// // // put path to your image in a clipboard
+					// // StringSelection ss = new StringSelection(Images.get(i));
+					// // Toolkit.getDefaultToolkit().getS ystemClipboard().setContents(ss, null);
+					// //
+					// // // imitate mouse events like ENTER, CTRL+C, CTRL+V
+					// // Robot robot = new Robot();
+					// // robot.keyPress(KeyEvent.VK_ENTER);
+					// // robot.keyRelease(KeyEvent.VK_ENTER);
+					// // robot.keyPress(KeyEvent.VK_CONTROL);
+					// // robot.keyPress(KeyEvent.VK_V);
+					// // robot.keyRelease(KeyEvent.VK_V);
+					// // robot.keyRelease(KeyEvent.VK_CONTROL);
+					// // robot.keyPress(KeyEvent.VK_ENTER);
+					// // robot.keyRelease(KeyEvent.VK_ENTER);
+					// }
 
 					// radio button
 					// driver.findElement(By
@@ -283,6 +290,7 @@ public class Main extends Application {
 				// alert.showAndWait();
 			}
 		}
+
 	}
 
 	public void loginGoogle(String username, String Password) {

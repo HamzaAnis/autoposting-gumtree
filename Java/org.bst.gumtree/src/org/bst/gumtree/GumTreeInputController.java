@@ -69,7 +69,7 @@ public class GumTreeInputController implements ControlledScreen {
 	protected void loadFIleaction() {
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
-		FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv");
+		FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Excel files (*.xlsx)", "*.xlsx");
 		fileChooser.getExtensionFilters().add(extFilter);
 		File file = fileChooser.showOpenDialog(new Stage());
 		System.out.println(file.getAbsolutePath());
