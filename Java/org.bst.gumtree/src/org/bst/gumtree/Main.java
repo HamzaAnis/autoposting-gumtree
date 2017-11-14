@@ -1,21 +1,24 @@
 package org.bst.gumtree;
 
-import java.awt.datatransfer.StringSelection;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-import com.sun.glass.ui.Robot;
-import com.sun.javafx.tk.Toolkit;
-
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -101,6 +104,35 @@ public class Main extends Application {
 		// e.printStackTrace();
 		// }
 		mainContainer.setScreen("GumTree");
+	}
+
+	public static void readExcel(String fileName) throws IOException {
+		File excel = new File(fileName);
+		FileInputStream fis = new FileInputStream(excel);
+		XSSFWorkbook book = new XSSFWorkbook(fis);
+		XSSFSheet sheet = book.getSheetAt(0);
+		Iterator<Row> itr = sheet.iterator();
+		while (itr.hasNext()) {
+			Row row = itr.next(); // Iterating over each column of Excel file
+			Iterator<Cell> cellIterator = row.cellIterator();
+			while (cellIterator.hasNext()) {
+				Cell cell = cellIterator.next();
+				switch (cell.getCellType()) {
+				case Cell.CELL_TYPE_STRING:
+					System.out.print(cell.getStringCellValue() + "\t");
+					break;
+				case Cell.CELL_TYPE_NUMERIC:
+					System.out.print(cell.getNumericCellValue() + "\t");
+					break;
+				case Cell.CELL_TYPE_BOOLEAN:
+					System.out.print(cell.getBooleanCellValue() + "\t");
+					break;
+				default:
+				}
+			}
+			System.out.println("");
+		}
+
 	}
 
 	public void loginGumtree() {
@@ -221,20 +253,20 @@ public class Main extends Application {
 					// Images
 					for (int i = 0; i < 9; i++) {
 						driver.findElement(By.className("image-uploadab-add")).click();// .sendKeys(Images.get(i));
-						// put path to your image in a clipboard
-						StringSelection ss = new StringSelection(Images.get(i));
-						Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
-
-						// imitate mouse events like ENTER, CTRL+C, CTRL+V
-						Robot robot = new Robot();
-						robot.keyPress(KeyEvent.VK_ENTER);
-						robot.keyRelease(KeyEvent.VK_ENTER);
-						robot.keyPress(KeyEvent.VK_CONTROL);
-						robot.keyPress(KeyEvent.VK_V);
-						robot.keyRelease(KeyEvent.VK_V);
-						robot.keyRelease(KeyEvent.VK_CONTROL);
-						robot.keyPress(KeyEvent.VK_ENTER);
-						robot.keyRelease(KeyEvent.VK_ENTER);
+						// // put path to your image in a clipboard
+						// StringSelection ss = new StringSelection(Images.get(i));
+						// Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
+						//
+						// // imitate mouse events like ENTER, CTRL+C, CTRL+V
+						// Robot robot = new Robot();
+						// robot.keyPress(KeyEvent.VK_ENTER);
+						// robot.keyRelease(KeyEvent.VK_ENTER);
+						// robot.keyPress(KeyEvent.VK_CONTROL);
+						// robot.keyPress(KeyEvent.VK_V);
+						// robot.keyRelease(KeyEvent.VK_V);
+						// robot.keyRelease(KeyEvent.VK_CONTROL);
+						// robot.keyPress(KeyEvent.VK_ENTER);
+						// robot.keyRelease(KeyEvent.VK_ENTER);
 					}
 
 					// radio button
