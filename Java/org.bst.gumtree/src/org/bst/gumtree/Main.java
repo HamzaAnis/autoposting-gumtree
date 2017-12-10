@@ -114,8 +114,7 @@ public class Main extends Application {
 				driver.navigate().to("https://my.gumtree.com/login");
 				// Google login
 				try {
-
-					driver.findElement(By.xpath("//*[@id=\"login-form\"]/div/button")).click();
+					driver.findElement(By.xpath(" ")).click();
 					loggedIn = true;
 				} catch (Exception e) {
 					loggedIn = true;
@@ -130,7 +129,7 @@ public class Main extends Application {
 			String price, String Phone, ArrayList<String> Images) {
 		while (true) {
 			try {
-				System.out.println("Checking logging in");
+//				System.out.println("Checking logging in");
 				if (loggedIn) {
 					System.out.println("It is logged in");
 					boolean notFound = true;
@@ -276,7 +275,7 @@ public class Main extends Application {
 					// conformation
 					break;
 				} else {
-					System.out.println("Injecting started");
+//					System.out.println("Injecting started");
 				}
 			}
 
