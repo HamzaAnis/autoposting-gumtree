@@ -4,6 +4,7 @@ var app = express();
 
 app.set('port', process.env.PORT || 3000);
 app.set('view engine', 'ejs');
+app.set('check','checking');
 app.set('views', 'app/views');
 
 
