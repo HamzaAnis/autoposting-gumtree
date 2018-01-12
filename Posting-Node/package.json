@@ -1,0 +1,20 @@
+{
+  "name": "gumtree",
+  "version": "1.0.0",
+  "description": "A node application that will post to the gumtree",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon -e css,ejs,js,json",
+    "test": "nodemon"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HamzaAnis/autoposting-gumtree.git"
+  },
+  "author": "Hamza Anis",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HamzaAnis/autoposting-gumtree/issues"
+  },
+  "homepage": "https://github.com/HamzaAnis/autoposting-gumtree#readme"
+}
