@@ -10,6 +10,7 @@ app.set('views', 'app/views');
 app.use(express.static('app/public'));
 app.use(require('./routes/index'));
 app.use(require('./routes/samplefileDownload'));
+app.use(require('./routes/adpost'));
 
 var server = app.listen(app.get('port'), function () {
     console.log('Listening on http://localhost:' + app.get('port'));
