@@ -4,7 +4,7 @@
   "description": "A node application that will post to the gumtree",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon -e css,ejs,js,json",
+    "start": "nodemon app/app.js -e css,ejs,js,json",
     "test": "nodemon"
   },
   "repository": {
