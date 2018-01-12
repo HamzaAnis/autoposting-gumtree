@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/HamzaAnis/autoposting-gumtree/issues"
   },
-  "homepage": "https://github.com/HamzaAnis/autoposting-gumtree#readme"
+  "homepage": "https://github.com/HamzaAnis/autoposting-gumtree#readme",
+  "dependencies": {
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "reload": "^2.2.2"
+  }
 }
