@@ -13,7 +13,6 @@ app.use(express.static('app/public'));
 app.use(require('./routes/index'));
 app.use(require('./routes/samplefileDownload'));
 app.use(require('./routes/adpost'));
-// app.use(require('./routes/selectFile'));
 
 app.post('/upload', function (req, res) {
     console.log("Uploading");
@@ -24,13 +23,13 @@ app.post('/upload', function (req, res) {
     console.log(req.files);
 
     sampleFile = req.files.sampleFile;
-	sampleFile.mv(__dirname+'/file/' + sampleFile.name, (err) => {
-		if (err) {
+    sampleFile.mv(__dirname + '/file/' + sampleFile.name, (err) => {
+        if (err) {
             console.log("Error");
-			return res.status(500).send(err);
-		}
-		res.status(400).send('file uploaded.');
-	});
+            return res.status(500).send(err);
+        }
+        console.log("Uploaded");
+    });
 });
 
 var server = app.listen(app.get('port'), function () {
