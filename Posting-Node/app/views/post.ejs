@@ -44,14 +44,15 @@
             <!-- container -->
         </nav>
     </header>
-    <!-- <a href="/selectFile">
-    <button id="chat-submit" class="btn btn-info" style="margin:auto;display:block;width:80px" href="/selectFile">Chat</button>
-    </a> -->
-    <form id="file-upload" name="uploadform" method="post">
-        <h3>Select Key:</h3>
-        <input type='file' id='file-select' name='keySelect' multiple accept=".csv">
-        <button type="submit" onclick="showMessages()" class="btn btn-lg btn-default" id="upload">Upload Data</button>
-    </form>
+
+    <form ref='uploadForm' 
+      id='uploadForm' 
+      action='/upload' 
+      method='post' 
+      encType="multipart/form-data">
+        <input type="file" name="sampleFile"  multiple accept=".csv"/>
+        <input type='submit' value='Upload!' />
+    </form>     
     </div>
 
 

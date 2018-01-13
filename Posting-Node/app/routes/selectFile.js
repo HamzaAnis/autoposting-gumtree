@@ -1,8 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
-router.get('/selectFile/:filename', function(req,res) {
+router.post('/upload', function (req, res) {
     console.log("I am here");
-    console.log(req.params.filename);
+    let sampleFile = req.files.sampleFile;
+
+    console.log("it is" + sampleFile);
 });
 module.exports = router;
