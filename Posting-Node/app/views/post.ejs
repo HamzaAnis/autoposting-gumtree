@@ -45,17 +45,14 @@
         </nav>
     </header>
 
-    <form ref='uploadForm' 
-      id='uploadForm' 
-      action='/upload' 
-      method='post' 
-      encType="multipart/form-data">
-        <input type="file" name="sampleFile"  multiple accept=".csv"/>
+    <form ref='uploadForm' id='uploadForm' action='/upload' method='post' encType="multipart/form-data">
+        <input type="file" name="sampleFile" multiple accept=".csv" />
         <input type='submit' onclick="preventLoad()" value='Upload!' />
-    </form>     
+    </form>
     </div>
-
-
+    <a href="/startposting" class="navbar-brand">
+    <button id="postingButton" class="btn btn-info" type="submit">Start</button>
+    </a>
     <!-- container -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"

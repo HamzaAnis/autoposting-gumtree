@@ -13,6 +13,7 @@ app.use(express.static('app/public'));
 app.use(require('./routes/index'));
 app.use(require('./routes/samplefileDownload'));
 app.use(require('./routes/adpost'));
+app.use(require('./routes/startposting'));
 
 app.post('/upload', function (req, res) {
     console.log("Uploading");
