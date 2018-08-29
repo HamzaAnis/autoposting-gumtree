@@ -2,4 +2,5 @@
 
 # Under Development
 
-A .net app that will let you post to gumtree site.
+- Java: Java version
+- Posting-Node: Node.js version
